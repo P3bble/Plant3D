@@ -1,0 +1,43 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+[Uu]serSettings/
+
+# Visual Studio
+.vs/
+*.csproj
+*.sln
+*.suo
+*.user
+*.unityproj
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.VC.VC.opendb
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Crash logs
+*.stacktrace
+
+# Other
+*.apk
+*.aab
+*.unitypackage
+
+# Package management
+Packages/
+
+# Exclude package cache
+Library/PackageCache/
