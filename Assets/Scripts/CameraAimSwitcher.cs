@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using Unity.Cinemachine;   // ✅ only this one
+using Unity.Cinemachine;  
 
 public class CameraAimSwitcher : MonoBehaviour
 {
