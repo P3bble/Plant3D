@@ -4,84 +4,91 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class ThirdPersonMover : MonoBehaviour
 {
-    [Header("References")]
-    // cameraTransform no longer needed for movement-relative-to-player,
-    // but you can keep it if other systems use it.
-    public Transform cameraTransform;
-
+    [Header("Input")]
     public InputActionReference moveAction;
-    public InputActionReference jumpAction;   // optional
-    public InputActionReference sprintAction; // optional
+    public InputActionReference jumpAction;
+    public InputActionReference sprintAction;
 
-    [Header("Movement Settings")]
+    [Header("Movement")]
     public float walkSpeed = 5f;
     public float sprintSpeed = 8f;
-    public float airControl = 0.5f;     // 0..1, how much control you have in air
+    public float airControl = 0.5f;
     public float jumpHeight = 1.2f;
     public float gravity = -20f;
 
-    private CharacterController controller;
-    private Vector3 verticalVelocity;
+    [Header("Animation")]
+    public Animator animator;
+    public string moveBool = "IsMoving";   
+    public string groundedBool = "IsGrounded";
+    public string jumpTrigger = "Jump";    // 
+    public string landTrigger = "Land";    
+
+    CharacterController controller;
+    Vector3 verticalVelocity;
+    bool wasGrounded;
 
     void Awake()
     {
         controller = GetComponent<CharacterController>();
+        if (!animator) animator = GetComponentInChildren<Animator>(true);
     }
 
     void OnEnable()
     {
-        moveAction.action.Enable();
+        if (moveAction) moveAction.action.Enable();
         if (jumpAction) jumpAction.action.Enable();
         if (sprintAction) sprintAction.action.Enable();
     }
 
     void OnDisable()
     {
-        moveAction.action.Disable();
+        if (moveAction) moveAction.action.Disable();
         if (jumpAction) jumpAction.action.Disable();
         if (sprintAction) sprintAction.action.Disable();
     }
 
     void Update()
     {
-        // --- Read input ---
-        Vector2 input = moveAction.action.ReadValue<Vector2>();
-        bool isSprinting = sprintAction && sprintAction.action.IsPressed();
-        float targetSpeed = isSprinting ? sprintSpeed : walkSpeed;
+        Vector2 input = moveAction ? moveAction.action.ReadValue<Vector2>() : Vector2.zero;
+        bool sprinting = sprintAction && sprintAction.action.IsPressed();
+        float targetSpeed = sprinting ? sprintSpeed : walkSpeed;
 
-        // --- Move relative to PLAYER orientation (TPS strafe) ---
-        // Mouse (camera script) should rotate the PLAYER (yaw).
-        Vector3 moveDir = (transform.forward * input.y) + (transform.right * input.x);
+        Vector3 moveDir = transform.forward * input.y + transform.right * input.x;
         if (moveDir.sqrMagnitude > 1f) moveDir.Normalize();
 
-        // Grounded movement vs air control
-        Vector3 horizontalMove;
-        if (controller.isGrounded)
-        {
-            horizontalMove = moveDir * targetSpeed;
-        }
-        else
-        {
-            // limited control in air
-            horizontalMove = moveDir * targetSpeed * Mathf.Clamp01(airControl);
-        }
+        Vector3 horizontal = controller.isGrounded
+            ? moveDir * targetSpeed
+            : moveDir * targetSpeed * Mathf.Clamp01(airControl);
 
-        // --- Jump / Gravity ---
+        // jump
         if (controller.isGrounded)
         {
-            // small downward force keeps us grounded on slopes
             if (verticalVelocity.y < 0f) verticalVelocity.y = -2f;
-
             if (jumpAction && jumpAction.action.WasPressedThisFrame())
             {
                 verticalVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                if (animator) animator.SetTrigger(jumpTrigger);
             }
         }
 
         verticalVelocity.y += gravity * Time.deltaTime;
 
-        // --- Apply movement ---
-        Vector3 velocity = new Vector3(horizontalMove.x, verticalVelocity.y, horizontalMove.z);
+        Vector3 velocity = new Vector3(horizontal.x, verticalVelocity.y, horizontal.z);
         controller.Move(velocity * Time.deltaTime);
+
+        // animation parameters
+        if (animator)
+        {
+            Vector3 hv = controller.velocity; hv.y = 0f;
+            animator.SetBool(moveBool, hv.sqrMagnitude > 0.01f);
+
+            bool grounded = controller.isGrounded;
+            animator.SetBool(groundedBool, grounded);
+
+            if (!wasGrounded && grounded && !string.IsNullOrEmpty(landTrigger))
+                animator.SetTrigger(landTrigger);
+
+            wasGrounded = grounded;
+        }
     }
 }

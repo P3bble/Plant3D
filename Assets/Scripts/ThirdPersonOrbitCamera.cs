@@ -32,6 +32,10 @@ public class TPSCameraController : MonoBehaviour
     public InputActionReference lookAction;
     public InputActionReference aimAction;
 
+    [Header("Animation")]
+    public Animator animator;          // drag Isaac's Animator here
+    public string aimBool = "IsAiming";
+
     [Header("UX")]
     public bool lockCursor = true;
 
@@ -43,13 +47,9 @@ public class TPSCameraController : MonoBehaviour
         if (lookAction) lookAction.action.Enable();
         if (aimAction) aimAction.action.Enable();
 
-        if (lockCursor)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-
+        if (lockCursor) { Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; }
         targetDistance = Mathf.Clamp(distance, minDistance, maxDistance);
+        if (!animator) animator = GetComponentInChildren<Animator>(true);
     }
 
     void OnDisable()
@@ -66,6 +66,7 @@ public class TPSCameraController : MonoBehaviour
         if (!target) return;
 
         bool isAiming = aimAction && aimAction.action.IsPressed();
+        if (animator) animator.SetBool(aimBool, isAiming);
 
         Vector2 look = lookAction ? lookAction.action.ReadValue<Vector2>() : Vector2.zero;
 
