@@ -2492,7 +2492,6 @@ MonoBehaviour:
   moveBool: IsMoving
   groundedBool: IsGrounded
   jumpTrigger: Jump
-  landTrigger: Land
 --- !u!95 &1517081651
 Animator:
   serializedVersion: 7

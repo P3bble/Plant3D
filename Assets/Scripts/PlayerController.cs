@@ -21,7 +21,7 @@ public class ThirdPersonMover : MonoBehaviour
     public string moveBool = "IsMoving";   
     public string groundedBool = "IsGrounded";
     public string jumpTrigger = "Jump";    // 
-    public string landTrigger = "Land";    
+
 
     CharacterController controller;
     Vector3 verticalVelocity;
@@ -85,8 +85,7 @@ public class ThirdPersonMover : MonoBehaviour
             bool grounded = controller.isGrounded;
             animator.SetBool(groundedBool, grounded);
 
-            if (!wasGrounded && grounded && !string.IsNullOrEmpty(landTrigger))
-                animator.SetTrigger(landTrigger);
+         // land trigger
 
             wasGrounded = grounded;
         }
