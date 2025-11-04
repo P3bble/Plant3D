@@ -7,9 +7,9 @@ public class PlantWaveSpawner : MonoBehaviour
     public class Wave
     {
         public string waveName = "Wave";
-        public float durationSeconds = 20f;   // how long the wave runs
-        public int spawnCount = 10;           // how many to spawn total this wave
-        public GameObject[] plantPrefabs;     // which prefabs can spawn
+        public float durationSeconds = 20f;   // Wave time
+        public int spawnCount = 10;           // Enimies that will spawn(how many)
+        public GameObject[] plantPrefabs;     // which enimies can spawn?
     }
 
     public enum SpawnerState { Idle, InWave, Cooldown, Finished }
@@ -32,7 +32,7 @@ public class PlantWaveSpawner : MonoBehaviour
 
     private float waveTimeLeft = 0f;
     private float cooldownTimeLeft = 0f;
-    private float spawnInterval = 0f; // computed per wave
+    private float spawnInterval = 0f; 
     private float spawnTimer = 0f;
 
     private SpawnerState state = SpawnerState.Idle;

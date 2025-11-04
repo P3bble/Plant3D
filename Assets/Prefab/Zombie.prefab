@@ -108,10 +108,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.1059232
-  m_Height: 4.4236927
+  m_Radius: 1.4501098
+  m_Height: 4.948001
   m_Direction: 1
-  m_Center: {x: -0.6059232, y: 0, z: 0}
+  m_Center: {x: -0.09273219, y: 0.6897092, z: -0.16900432}
 --- !u!114 &6953657939737949120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,8 +125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 2
-  deathVfx: {fileID: 0}
-  deathSfx: {fileID: 0}
 --- !u!114 &3684157829667394125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f259c72047cfc9f4caf413c934e3ec29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  targetTag: Player
   speed: 5
   aggroRange: 30.2
   stopDistance: 1.5

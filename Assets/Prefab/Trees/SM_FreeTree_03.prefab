@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3707609516234635100}
   - component: {fileID: 8160999004248555737}
   - component: {fileID: 1689710628315767928}
+  - component: {fileID: 6518254692340881373}
   m_Layer: 0
   m_Name: SM_FreeTree_03
   m_TagString: Untagged
@@ -86,3 +87,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6518254692340881373
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8305478030278145660}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.26408136, y: 4.5460854, z: 0.22485587}
+  m_Center: {x: -0.032040626, y: 2.2730427, z: 0.14036426}

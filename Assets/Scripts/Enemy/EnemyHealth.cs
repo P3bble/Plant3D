@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
-    public static System.Action<EnemyHealth> onAnyEnemyDied;
+    public static event System.Action<EnemyHealth> onAnyEnemyDied;
 
     [SerializeField] private int maxHealth = 30;
     private int health;
@@ -19,5 +19,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     {
         onAnyEnemyDied?.Invoke(this);
         Destroy(gameObject);
+        Debug.Log("Enemy PLANT has died");
+
     }
 }
