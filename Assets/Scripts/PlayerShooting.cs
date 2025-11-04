@@ -21,7 +21,7 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
-        // Left mouse / Ctrl by default (Input Manager "Fire1")
+     
         bool wantsToShoot = Input.GetButton("Fire1");
 
         if (wantsToShoot && Time.time >= nextFireTime && ammo > 0)

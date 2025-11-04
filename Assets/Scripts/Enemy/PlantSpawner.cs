@@ -140,10 +140,10 @@ public class PlantWaveSpawner : MonoBehaviour
             spawnTimer = 0f;
         }
 
-        // End the wave when the timer runs out (spawns stop; plants still alive can remain)
+       
         if (waveTimeLeft <= 0f)
         {
-            state = SpawnerState.Idle; // Run() will handle cooldown + wipe
+            state = SpawnerState.Idle;
         }
     }
 
@@ -167,7 +167,7 @@ public class PlantWaveSpawner : MonoBehaviour
         alive = Mathf.Max(0, alive - 1);
     }
 
-    // Kill everything that uses EnemyHealth (so normal death events/VFX still run)
+    // Kill everything that uses EnemyHealth
     private void WipeAllEnemies()
     {
         var enemies = FindObjectsOfType<EnemyHealth>();
