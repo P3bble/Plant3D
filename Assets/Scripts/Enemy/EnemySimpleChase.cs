@@ -13,7 +13,6 @@ public class PlantSimpleChase : MonoBehaviour
     {
         GameObject found = GameObject.FindGameObjectWithTag(targetTag);
         if (found != null) target = found.transform;
-        else Debug.LogWarning($"{name}: No GameObject found with tag '{targetTag}'");
     }
 
     void Update()
@@ -29,7 +28,7 @@ public class PlantSimpleChase : MonoBehaviour
         {
             Vector3 dir = to.normalized;
             transform.position += dir * speed * Time.deltaTime;
-            transform.rotation = Quaternion.Slerp(
+            transform.rotation = Quaternion.Slerp( //slerp
                 transform.rotation,
                 Quaternion.LookRotation(dir, Vector3.up),
                 10f * Time.deltaTime
