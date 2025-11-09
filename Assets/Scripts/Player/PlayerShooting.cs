@@ -4,49 +4,83 @@ using UnityEngine.Events;
 public class PlayerShooting : MonoBehaviour
 {
     [Header("Ammo")]
-    [SerializeField] private int ammo = 0;
-    [SerializeField] private int ammoCap = 999;
+    [SerializeField] int ammo = 0;
+    [SerializeField] int ammoCap = 999;
     public UnityEvent<int> OnAmmoChanged;
 
     [Header("Shooting")]
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private float fireRate = 0.2f;
-    private float nextFireTime = 0f;
+    [SerializeField] Transform firePoint;
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] float fireRate = 0.2f;
+    float nextFireAt;
+
+    [Header("Audio")]
+    AudioSource audioSource;
+    [SerializeField] AudioClip shooting;
+    [SerializeField] AudioClip cantFire;
+    [SerializeField] AudioClip pickup;
+
 
     void Start()
     {
         OnAmmoChanged?.Invoke(ammo);
     }
+   
+ 
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
 
     void Update()
     {
-     
-        bool wantsToShoot = Input.GetButton("Fire1");
+      
+        if (!Input.GetButton("Fire1")) return;
 
-        if (wantsToShoot && Time.time >= nextFireTime && ammo > 0)
+       
+        if (Time.time < nextFireAt) return;
+
+        if (ammo > 0)
         {
-            Shoot();
+            Fire();
+        }
+        else
+        {
+            
+            nextFireAt = Time.time + fireRate;
+            PlayOneShot(cantFire);
         }
     }
 
-    private void Shoot()
+    void Fire()
     {
-        nextFireTime = Time.time + fireRate;
+        nextFireAt = Time.time + fireRate;
 
-        // Spawn bullet
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        // bullet
+        if (bulletPrefab && firePoint)
+            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
-        // Spend ammo
+        // spend ammo UI
         ammo = Mathf.Max(0, ammo - 1);
         OnAmmoChanged?.Invoke(ammo);
+
+        PlayOneShot(shooting);
     }
 
     public void AddAmmo(int amount)
     {
-        ammo = Mathf.Clamp(ammo + amount, 0, ammoCap);
+        ammo = Mathf.Clamp(ammo + Mathf.Max(0, amount), 0, ammoCap);
         OnAmmoChanged?.Invoke(ammo);
+        PlayOneShot(pickup);
     }
 
     public bool HasAmmo() => ammo > 0;
+
+    void PlayOneShot(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+            audioSource.PlayOneShot(clip);
+    }
 }
