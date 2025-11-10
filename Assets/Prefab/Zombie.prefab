@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3684157829667394125}
   - component: {fileID: 1692322862469148693}
   - component: {fileID: -7424228803843199278}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -111,10 +111,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.4501098
+  m_Radius: 1.5178665
   m_Height: 4.948001
   m_Direction: 1
-  m_Center: {x: -0.09273219, y: 0.6897092, z: -0.16900432}
+  m_Center: {x: -0.09273219, y: 0.6897092, z: -0.10124767}
 --- !u!114 &6953657939737949120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,9 +143,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: Player
-  speed: 5
   aggroRange: 30.2
   stopDistance: 1.5
+  aggroStickTime: 3
+  speed: 5
+  turnSpeed: 10
 --- !u!114 &1692322862469148693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropItems:
   - {fileID: 3553980202016216063, guid: 275dd8acb06f8ed4caa84e3cb40dc1d4, type: 3}
-  dropChance: 0.3
+  dropChance: 0.831
 --- !u!54 &-7424228803843199278
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -197,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6304935348041428721}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HPBARSPACE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
