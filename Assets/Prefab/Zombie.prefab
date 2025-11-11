@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: Player
-  aggroRange: 30.2
+  aggroRange: 52.2
   stopDistance: 1.5
   aggroStickTime: 3
   speed: 5
