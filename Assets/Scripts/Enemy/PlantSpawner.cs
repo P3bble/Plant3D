@@ -32,7 +32,7 @@ public class PlantWaveSpawner : MonoBehaviour
 
     private float waveTimeLeft = 0f;
     private float cooldownTimeLeft = 0f;
-    private float spawnInterval = 0f; 
+    private float spawnInterval = 0f;
     private float spawnTimer = 0f;
 
     private SpawnerState state = SpawnerState.Idle;
@@ -140,7 +140,7 @@ public class PlantWaveSpawner : MonoBehaviour
             spawnTimer = 0f;
         }
 
-       
+
         if (waveTimeLeft <= 0f)
         {
             state = SpawnerState.Idle;

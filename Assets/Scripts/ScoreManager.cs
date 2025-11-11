@@ -6,7 +6,7 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance { get; private set; }
 
     public int Score { get; private set; }
-    public event Action<int> OnScoreChanged; // UI listens to this
+    public event Action<int> OnScoreChanged;
 
     void Awake()
     {

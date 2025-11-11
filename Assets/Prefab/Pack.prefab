@@ -132,6 +132,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1533328936440940073}
     m_Modifications:
+    - target: {fileID: 7848814802614921178, guid: 22a5d128c1b3952419fa92a724754b57, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bc3aac4f2bc9c1a4081d6fae3ebd9d0f, type: 2}
     - target: {fileID: 8641399477306852879, guid: 22a5d128c1b3952419fa92a724754b57, type: 3}
       propertyPath: m_Name
       value: newammot

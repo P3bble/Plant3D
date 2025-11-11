@@ -4,15 +4,12 @@ public class Billboard : MonoBehaviour
 {
     Camera cam;
 
-    void Start() => cam = Camera.main;
+    void Awake() => cam = Camera.main;
 
     void LateUpdate()
     {
-        if (!cam)
-        {
-            cam = Camera.main;
-            if (!cam) return;
-        }
-        transform.rotation = Quaternion.LookRotation(transform.position - cam.transform.position);
+        if (!cam) { cam = Camera.main; if (!cam) return; }
+        transform.LookAt(transform.position + cam.transform.rotation * Vector3.forward,
+                         cam.transform.rotation * Vector3.up);
     }
 }
