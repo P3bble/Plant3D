@@ -1,16 +1,27 @@
 using UnityEngine;
+using TMPro;
 
 public class DiamondManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static DiamondManager Instance;
+    public int money;
+    public TextMeshProUGUI moneyText;
+
+    void Awake()
     {
-        
+        Instance = this;
+        UpdateUI();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddMoney(int amount)
     {
-        
+        money += amount;
+        UpdateUI();
+    }
+
+    void UpdateUI()
+    {
+        if (moneyText != null)
+            moneyText.text = "$" + money.ToString();
     }
 }
