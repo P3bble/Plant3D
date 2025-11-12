@@ -19,11 +19,11 @@ public class TPSCameraController : MonoBehaviour
     public float maxDistance = 15.0f;
 
     [Header("Aim View")]
-    public float aimDistance = 2.0f;  // zoom when aiming
-    public float shoulderX = 0.0f;    // base sideways offset (0 = centered)
-    public float aimShoulderX = 0.5f; // extra sideways when aiming (right shoulder)
-    public float shoulderY = 0.2f;    // small vertical lift
-    public float offsetBlend = 12f;   // how fast offset blends
+    public float aimDistance = 2.0f;  // zoom
+    public float shoulderX = 0.0f;
+    public float aimShoulderX = 0.5f;
+    public float shoulderY = 0.2f;
+    public float offsetBlend = 12f;
 
     [Header("Smoothing")]
     public float followSharpness = 20f;
@@ -45,13 +45,18 @@ public class TPSCameraController : MonoBehaviour
 
     float pitch = 15f;
     float targetDistance;
-    float sideOffset; // smoothed current sideways offset
+    float sideOffset;
 
     void OnEnable()
     {
         if (lookAction) lookAction.action.Enable();
         if (aimAction) aimAction.action.Enable();
-        if (lockCursor) { Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; }
+        if (lockCursor && !(SettingsUI.IsOpen))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
         targetDistance = Mathf.Clamp(distance, minDistance, maxDistance);
         if (!animator) animator = GetComponentInChildren<Animator>(true);
     }
@@ -67,18 +72,21 @@ public class TPSCameraController : MonoBehaviour
     void LateUpdate()
     {
         if (!target) return;
+        if (SettingsUI.IsOpen) return;
 
         bool isAiming = aimAction && aimAction.action.IsPressed();
         if (animator) animator.SetBool(aimBool, isAiming);
 
         Vector2 look = lookAction ? lookAction.action.ReadValue<Vector2>() : Vector2.zero;
-        if (look.x != 0f)
-            target.Rotate(0f, look.x * mouseXSensitivity * Time.deltaTime, 0f, Space.Self);
 
-        pitch -= look.y * mouseYSensitivity * Time.deltaTime;
+        float sens = SettingsUI.MouseSensitivity;
+        if (look.x != 0f)
+            target.Rotate(0f, look.x * mouseXSensitivity * sens * Time.deltaTime, 0f, Space.Self);
+
+        pitch -= look.y * mouseYSensitivity * sens * Time.deltaTime;
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
-        // zoom + shoulder blend
+
         float desiredDist = Mathf.Clamp(isAiming ? aimDistance : distance, minDistance, maxDistance);
         targetDistance = desiredDist;
 
@@ -92,7 +100,6 @@ public class TPSCameraController : MonoBehaviour
         Vector3 back = rot * new Vector3(0f, 0f, -targetDistance);
         Vector3 desiredPos = focus + side + back;
 
-        // collision from focus to camera
         Vector3 dir = desiredPos - focus;
         float dist = dir.magnitude;
         if (dist > 0.0001f)
