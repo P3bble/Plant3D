@@ -2182,8 +2182,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - waveName: WAVE 1
-    durationSeconds: 190
-    spawnCount: 20
+    durationSeconds: 137.4
+    spawnCount: 171
     plantPrefabs:
     - {fileID: 2065862853144978178, guid: a8d60153dbdce984c9dc78577d969bfa, type: 3}
   - waveName: WAVE 2
@@ -3911,7 +3911,6 @@ GameObject:
   - component: {fileID: 1517081651}
   - component: {fileID: 1517081652}
   - component: {fileID: 1517081654}
-  - component: {fileID: 1517081653}
   - component: {fileID: 1517081655}
   - component: {fileID: 1517081656}
   m_Layer: 3
@@ -4126,19 +4125,6 @@ MonoBehaviour:
   shooting: {fileID: 8300000, guid: 1c6d5a8670058974a87732e3c3fa0eaa, type: 3}
   cantFire: {fileID: 8300000, guid: af2c0d878a8727342b93dd256acde613, type: 3}
   pickup: {fileID: 8300000, guid: 8d2eb83929b193e449b155476df764ad, type: 3}
---- !u!114 &1517081653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1517081643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86ad0f926f31a314e93e9386cb39a098, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
 --- !u!114 &1517081654
 MonoBehaviour:
   m_ObjectHideFlags: 0

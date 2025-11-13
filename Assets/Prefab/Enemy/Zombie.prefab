@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6953657939737949120}
   - component: {fileID: 3684157829667394125}
   - component: {fileID: 1692322862469148693}
-  - component: {fileID: -7424228803843199278}
+  - component: {fileID: 579055349261929114}
   m_Layer: 6
   m_Name: Zombie
   m_TagString: Enemy
@@ -146,11 +146,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: Player
-  aggroRange: 52.2
-  stopDistance: 1.5
-  aggroStickTime: 3
-  speed: 5
+  moveSpeed: 3
   turnSpeed: 10
+  stopDistance: 1
+  attackRange: 1.7
+  attackCooldown: 1
+  damage: 1
 --- !u!114 &1692322862469148693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,33 +168,20 @@ MonoBehaviour:
   - {fileID: 3553980202016216063, guid: 275dd8acb06f8ed4caa84e3cb40dc1d4, type: 3}
   - {fileID: 3099959320830565340, guid: 710d0311268c9f34fbf6c9d7ee4cbe58, type: 3}
   dropChance: 0.831
---- !u!54 &-7424228803843199278
-Rigidbody:
+--- !u!114 &579055349261929114
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2065862853144978178}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ad0f926f31a314e93e9386cb39a098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  attackCooldown: 1
 --- !u!1 &4938201461725124197
 GameObject:
   m_ObjectHideFlags: 0

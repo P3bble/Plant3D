@@ -1,15 +1,24 @@
 using UnityEngine;
 
-public class PlayerTouchDamage : MonoBehaviour
+public class TouchDamageDealer : MonoBehaviour
 {
-    public int damage = 1;
+    [SerializeField] int damage = 1;
+    [SerializeField] float attackCooldown = 1f;
 
-    private void OnTriggerEnter(Collider other)
+    float nextAttackTime = 0f;
+
+    void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (!other.CompareTag("Player")) return;
+
+        if (Time.time < nextAttackTime) return;
+        nextAttackTime = Time.time + attackCooldown;
+
+        IDamageable dmg = other.GetComponentInChildren<IDamageable>();
+        if (dmg != null)
         {
-            GetComponent<PlayerHealth>().TakeDamage(damage);
-            Debug.LogWarning("DAMAGE TAKEN");
+            dmg.TakeDamage(damage);
+            Debug.LogWarning("TouchDamageDealer: hit player for " + damage);
         }
     }
 }

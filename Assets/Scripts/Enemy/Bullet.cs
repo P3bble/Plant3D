@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        // Optional safety defaults:
+
         if (rb)
         {
             rb.useGravity = false;
@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
     void OnEnable()
     {
         if (rb != null)
-            rb.linearVelocity = transform.forward * speed;   // ✅ use velocity
+            rb.linearVelocity = transform.forward * speed;
 
         Destroy(gameObject, lifeTime);
     }
