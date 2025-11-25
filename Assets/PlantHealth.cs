@@ -11,18 +11,10 @@ public class PlantHealth : MonoBehaviour, IDamageable
 
     void Awake()
     {
-        currentHealth = maxHealth;
-
         if (hpSlider == null)
             hpSlider = GetComponentInChildren<Slider>();
 
-        if (hpSlider != null)
-        {
-            hpSlider.minValue = 0;
-            hpSlider.maxValue = maxHealth;
-            hpSlider.wholeNumbers = true;
-            UpdateBar();
-        }
+        ResetHealth();
     }
 
     public void TakeDamage(int amount)
@@ -42,6 +34,9 @@ public class PlantHealth : MonoBehaviour, IDamageable
         if (hpSlider == null) return;
 
         int damageTaken = maxHealth - currentHealth;
+        hpSlider.minValue = 0;
+        hpSlider.maxValue = maxHealth;
+        hpSlider.wholeNumbers = true;
         hpSlider.value = damageTaken;
     }
 
@@ -54,5 +49,11 @@ public class PlantHealth : MonoBehaviour, IDamageable
         Cursor.visible = true;
 
         Time.timeScale = 0f;
+    }
+
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
+        UpdateBar();
     }
 }

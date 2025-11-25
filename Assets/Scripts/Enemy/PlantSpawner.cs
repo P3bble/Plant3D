@@ -178,4 +178,23 @@ public class PlantWaveSpawner : MonoBehaviour
             enemies[i].TakeDamage(int.MaxValue);
         }
     }
+    public void ResetSpawner()
+    {
+        StopAllCoroutines();
+
+        currentWaveIndex = -1;
+        spawnedThisWave = 0;
+        alive = 0;
+
+        waveTimeLeft = 0f;
+        cooldownTimeLeft = 0f;
+        spawnInterval = 0f;
+        spawnTimer = 0f;
+
+        state = SpawnerState.Idle;
+
+        StartCoroutine(Run());
+    }
+
+
 }

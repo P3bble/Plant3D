@@ -481,6 +481,17 @@ MonoBehaviour:
   maxHealth: 40
   hpSlider: {fileID: 1022421941}
   gameOverScreen: {fileID: 1195229546}
+--- !u!114 &193661720 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 289366329086180387, guid: bc363c573c894b04eb1c7370a3fedac5, type: 3}
+  m_PrefabInstance: {fileID: 5005667297398134070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193661715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9e7cb08673e4e499d20ad0174e60f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &246600465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2353,6 +2364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12db33fe0eebcf943a96e94c0af3d4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plant: {fileID: 193661720}
+  gameOverScreen: {fileID: 1195229546}
 --- !u!1 &879092368
 GameObject:
   m_ObjectHideFlags: 0
@@ -3569,7 +3582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1195229547
 RectTransform:
   m_ObjectHideFlags: 0
