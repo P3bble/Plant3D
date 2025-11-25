@@ -9,9 +9,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] AudioClip hpLoss;
     AudioSource audioSource;
 
+    int startHealth;
+
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        startHealth = health;
     }
 
     public void TakeDamage(int amount)
@@ -28,5 +31,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             Debug.Log("you died :(");
             SceneManager.LoadScene("MainMenu");
         }
+    }
+
+    public void ResetHealth()
+    {
+        health = startHealth;
+        Debug.Log("Player health reset to: " + health);
     }
 }

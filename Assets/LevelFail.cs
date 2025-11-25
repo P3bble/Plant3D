@@ -13,12 +13,14 @@ public class LevelFail : MonoBehaviour
         if (plant != null)
             plant.ResetHealth();
 
-        // destroy all existing enemies
+        var player = FindObjectOfType<PlayerHealth>();
+        if (player != null)
+            player.ResetHealth();
+
         var enemies = FindObjectsOfType<EnemyHealth>();
         for (int i = 0; i < enemies.Length; i++)
             Destroy(enemies[i].gameObject);
 
-        // reset spawner & waves back to start
         var spawner = FindObjectOfType<PlantWaveSpawner>();
         if (spawner != null)
             spawner.ResetSpawner();

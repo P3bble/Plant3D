@@ -15,6 +15,7 @@ public class ObjectSpin : MonoBehaviour
     void Update()
     {
         // transform.Rotate(Vector3.left, rotationSpeed * Time.deltaTime);
-        transform.Rotate(Vector3.left, rotationSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+
     }
 }
