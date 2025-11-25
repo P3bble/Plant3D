@@ -62,6 +62,8 @@ public class PlantWaveSpawner : MonoBehaviour
 
     void Start()
     {
+        currentWaveIndex = 0;
+
         if (waves == null || waves.Length == 0)
         {
             Debug.LogWarning("PlantWaveSpawner: No waves configured.");

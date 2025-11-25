@@ -5,6 +5,7 @@ public class PlantHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] int maxHealth = 40;
     [SerializeField] Slider hpSlider;
+    [SerializeField] GameObject gameOverScreen;
 
     int currentHealth;
 
@@ -46,6 +47,12 @@ public class PlantHealth : MonoBehaviour, IDamageable
 
     void Die()
     {
-        gameObject.SetActive(false);
+        if (gameOverScreen != null)
+            gameOverScreen.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Time.timeScale = 0f;
     }
 }
