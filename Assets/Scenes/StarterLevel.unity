@@ -2182,8 +2182,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - waveName: WAVE 1
-    durationSeconds: 137.4
-    spawnCount: 171
+    durationSeconds: 113.3
+    spawnCount: 26
     plantPrefabs:
     - {fileID: 2065862853144978178, guid: a8d60153dbdce984c9dc78577d969bfa, type: 3}
   - waveName: WAVE 2
@@ -5266,11 +5266,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1533328936440940073, guid: 275dd8acb06f8ed4caa84e3cb40dc1d4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.99
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1533328936440940073, guid: 275dd8acb06f8ed4caa84e3cb40dc1d4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1533328936440940073, guid: 275dd8acb06f8ed4caa84e3cb40dc1d4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6233,6 +6233,10 @@ PrefabInstance:
     - target: {fileID: 2110891586153113133, guid: bc363c573c894b04eb1c7370a3fedac5, type: 3}
       propertyPath: m_Name
       value: plant monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 2110891586153113133, guid: bc363c573c894b04eb1c7370a3fedac5, type: 3}
+      propertyPath: m_TagString
+      value: Plant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

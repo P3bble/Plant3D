@@ -28,11 +28,19 @@ public class Bullet : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    {
-        var dmg = collision.collider.GetComponentInParent<IDamageable>();
-        if (dmg != null)
-            dmg.TakeDamage(damage);
+{
 
+    if (!collision.collider.CompareTag("Enemy"))
+    {
         Destroy(gameObject);
+        return;
     }
+
+    var dmg = collision.collider.GetComponentInParent<IDamageable>();
+    if (dmg != null)
+        dmg.TakeDamage(damage);
+
+    Destroy(gameObject);
+}
+
 }
