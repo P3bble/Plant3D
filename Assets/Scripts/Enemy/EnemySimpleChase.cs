@@ -114,6 +114,9 @@ public class PlantSimpleChase : MonoBehaviour
 
         if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 10f))
         {
+            if (hit.collider.CompareTag(playerTag) || hit.collider.CompareTag(plantTag))
+                return;
+
             Vector3 pos = transform.position;
             pos.y = hit.point.y;
             transform.position = pos;
